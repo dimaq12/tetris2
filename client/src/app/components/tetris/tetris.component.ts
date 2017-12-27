@@ -10,6 +10,7 @@ import { Field } from '../classes/field';
 import { Player } from '../classes/player';
 import { TetrisService } from '../../services/tetris.service';
 
+
 enum KEY_CODE {
   LEFT_ARROW = 37,
   UP_ARROW = 38,
@@ -24,13 +25,16 @@ enum KEY_CODE {
 })
 export class TetrisComponent implements AfterViewInit {
   canvasEl: HTMLCanvasElement;
+  pause: boolean;
+  game$: Observable<any>;
+
   constructor(private store: Store<any>, private tetrisService: TetrisService) {
   }
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
 
-    if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
+    if (!this.pause && event.keyCode === KEY_CODE.RIGHT_ARROW) {
       this.tetrisService.player.moveRight()
       if (this.tetrisService.collide(this.tetrisService.field.field, this.tetrisService.player)) {
         this.tetrisService.player.moveLeft();
@@ -38,18 +42,18 @@ export class TetrisComponent implements AfterViewInit {
 
     }
 
-    if (event.keyCode === KEY_CODE.LEFT_ARROW) {
+    if (!this.pause && event.keyCode === KEY_CODE.LEFT_ARROW) {
       this.tetrisService.player.moveLeft();
       if (this.tetrisService.collide(this.tetrisService.field.field, this.tetrisService.player)) {
         this.tetrisService.player.moveRight();
       }
     }
 
-    if (event.keyCode === KEY_CODE.UP_ARROW) {
+    if (!this.pause && event.keyCode === KEY_CODE.UP_ARROW) {
       this.tetrisService.playerRotate()
     }
 
-    if (event.keyCode === KEY_CODE.DOWN_ARROW) {
+    if (!this.pause && event.keyCode === KEY_CODE.DOWN_ARROW) {
       this.tetrisService.playerDrop()
     }
   }
@@ -66,5 +70,10 @@ export class TetrisComponent implements AfterViewInit {
 
   ngOnInit() {
     this.tetrisService.init();
+    this.game$ = this.store.select('game');
+    this.store.select((state => state))
+      .subscribe((data) => {
+        this.pause = data.gameReducer.pause;
+      });
   }
 }
