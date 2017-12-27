@@ -45,7 +45,7 @@ export class TetrisService {
     this.canvasEl = canvasEl;
     this.cx = this.canvasEl.getContext('2d');
     this.cx = cx;
-    this.cx.scale(20, 20);
+    this.cx.scale(24, 24);
     this.update();
   }
 
@@ -123,7 +123,8 @@ export class TetrisService {
   }
 
   public drow() {
-    this.cx.fillStyle = "#000";
+    this.cx.clearRect(0, 0, this.canvasEl.width, this.canvasEl.height);
+    this.cx.fillStyle = "rgba(243, 243, 243, 0.24)";
     this.cx.fillRect(0, 0, this.canvasEl.width, this.canvasEl.height);
     this.drowMatrix(this.player.matrix, this.player.pos);
     this.drowMatrix(this.field.field, { x: 0, y: 0 });
@@ -150,8 +151,16 @@ export class TetrisService {
     matrix.forEach((row, y) => {
       row.forEach((value, x) => {
         if (value !== 0) {
-          this.cx.fillStyle = "red";
+          let grd = this.cx.createLinearGradient(x + offset.x, y + offset.y, 1, 1);
+          grd.addColorStop( 0, "rgba(255, 255, 255, 0.62)" );
+          grd.addColorStop( 1, "rgba(255, 255, 255, 0.4)" );
+
+          this.cx.strokeStyle = "rgba(121, 121, 121, 0.9)";
+          this.cx.lineWidth = .1;
+          this.cx.fillStyle = grd;
+          this.cx.strokeRect(x + offset.x, y + offset.y, 1, 1);
           this.cx.fillRect(x + offset.x, y + offset.y, 1, 1)
+          this.cx.stroke();
         }
       })
     });

@@ -17,15 +17,15 @@ class Player {
   constructor(fieldWidth, fieldHeight) {
     this.fieldWidth = fieldWidth;
     this.fieldHeight = fieldHeight;
-    this.pos = { x: fieldWidth / 2, y: 0 };
+    this.pos = { x: (this.fieldWidth / 2 - (this.matrixWidth / 2 | 0)), y: 0 };
     this.matrixHeight = 3;
     this.matrixWidth = 3;
-    this.startPosition = { x: fieldWidth / 2, y: 0 };
+    this.startPosition = { x: (this.fieldWidth / 2 - (this.matrixWidth / 2 | 0))  , y: 0 };
     this.matrixMap = {
       A: [
-        [0, 0, 0],
         [1, 1, 1],
-        [0, 1, 0]
+        [0, 1, 0],
+        [0, 0, 0]
       ],
       B: [
         [1, 1],
@@ -88,7 +88,7 @@ class Player {
   }
 
   toTop(value?: number) {
-    this.pos = { x: this.fieldWidth / 2, y: 0 };
+    this.pos = { x: (this.fieldWidth / 2 - (this.matrixWidth / 2 | 0)), y: 0 };
   }
 
   moveLeft(value?: number) {
