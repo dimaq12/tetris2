@@ -1,3 +1,14 @@
+.top-panel{
+    background: #e7e7e78f;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+.top-panel h2{
+    color: #ffb04a;
+}
+.top-panel a{
+    color: #ffb04a;
+}
 .game{
     width: 100%;
     height: 100%;

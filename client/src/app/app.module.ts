@@ -10,12 +10,14 @@ import { TetrisComponent } from './components/tetris/tetris.component';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-//import { EffectsModule } from '@ngrx/effects';
+import { EffectsModule } from '@ngrx/effects';
 import { gameReducer } from './components/state/reducer';
+
+import { MainEffects } from './components/state/effects';
 
 import { TetrisService } from './services/tetris.service';
 
-
+import { ParticlesModule } from 'angular-particle';
 
 
 import { FormsModule } from '@angular/forms';
@@ -30,7 +32,6 @@ import { AlertService, AuthenticationService, UserService } from './services/ind
 import { HomeComponent } from './components/home/index';
 import { LoginComponent } from './components/login/index';
 import { RegisterComponent } from './components/register/index';
-import { CalendarComponent } from './components/calendar/index';
  
 
 @NgModule({
@@ -53,7 +54,9 @@ import { CalendarComponent } from './components/calendar/index';
     StoreModule.forRoot({gameReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 10
-    })
+    }),
+    EffectsModule.forRoot([MainEffects]),
+    ParticlesModule
   ],
   providers: [
     TetrisService,

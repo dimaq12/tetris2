@@ -4,3 +4,12 @@
     background: url(./img/wall.jpg) no-repeat; 
     background-size: 100% 100%; 
 }
+.top-panel{
+    background: #e7e7e78f;
+}
+.top-panel h2{
+    color: #ffb04a;
+}
+.top-panel a{
+    color: #ffb04a;
+}

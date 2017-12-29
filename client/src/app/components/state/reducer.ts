@@ -26,6 +26,8 @@ export function gameReducer(state = game, action: GameActions.GameActions) {
       return newState(state, { score: state.score + action.payload.score });
     case GameActions.UPDATE_LEVEL:
       return state;
+    case GameActions.NEW_GAME:
+      return newState(state, { pause: action.payload.pause, score: action.payload.pause });
     default:
       return state;
   }

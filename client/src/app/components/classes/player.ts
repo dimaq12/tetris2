@@ -20,7 +20,7 @@ class Player {
     this.pos = { x: (this.fieldWidth / 2 - (this.matrixWidth / 2 | 0)), y: 0 };
     this.matrixHeight = 3;
     this.matrixWidth = 3;
-    this.startPosition = { x: (this.fieldWidth / 2 - (this.matrixWidth / 2 | 0))  , y: 0 };
+    this.startPosition = { x: (this.fieldWidth / 2 - (this.matrixWidth / 2 | 0)), y: 0 };
     this.matrixMap = {
       A: [
         [1, 1, 1],

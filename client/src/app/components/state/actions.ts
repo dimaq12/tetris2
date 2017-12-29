@@ -7,6 +7,7 @@ export const RESTORE_GAME = 'RESTORE_GAME';
 export const DESTROY_GAME = 'DESTROY_GAME';
 export const UPDATE_COUNTER = 'UPDATE_COUNTER';
 export const UPDATE_LEVEL = 'UPDATE_LEVEL';
+export const NEW_GAME = 'NEW_GAME';
 
 export class StartGame implements Action {
   readonly type = START_GAME;
@@ -43,4 +44,11 @@ export class UpdateLevel implements Action {
   constructor(public payload: { id: string; done: boolean }) { }
 }
 
-export type GameActions = StartGame | PauseGame | RestoreGame | UpdateCounter | UpdateLevel;
+export class NewGame implements Action {
+  readonly type = NEW_GAME;
+
+  constructor(public payload: { score: number; pause: boolean }) { }
+}
+
+
+export type GameActions = StartGame | PauseGame | RestoreGame | UpdateCounter | UpdateLevel | NewGame;

@@ -41,6 +41,10 @@ export class TetrisService {
       });
   }
 
+  public levelUp() {
+    this.store.dispatch(new GameActions.UpdateCounter({ score: 100 }));
+  }
+
   afterInit(canvasEl, cx) {
     this.canvasEl = canvasEl;
     this.cx = this.canvasEl.getContext('2d');
@@ -60,6 +64,12 @@ export class TetrisService {
       window.cancelAnimationFrame(this.animation)
       this.animation = window.requestAnimationFrame(this.update.bind(this))
     }
+  }
+
+  restartGame(){
+    console.log('game was restarted')
+    // this.field = new Field(20, 30)
+    // this.player = new Player(this.field.fieldX, this.field.fieldY)
   }
 
   public merge(field, player) {
@@ -152,9 +162,8 @@ export class TetrisService {
       row.forEach((value, x) => {
         if (value !== 0) {
           let grd = this.cx.createLinearGradient(x + offset.x, y + offset.y, 1, 1);
-          grd.addColorStop( 0, "rgba(255, 255, 255, 0.62)" );
-          grd.addColorStop( 1, "rgba(255, 255, 255, 0.4)" );
-
+          grd.addColorStop(0, "rgba(255, 255, 255, 0.62)");
+          grd.addColorStop(1, "rgba(255, 255, 255, 0.4)");
           this.cx.strokeStyle = "rgba(121, 121, 121, 0.9)";
           this.cx.lineWidth = .1;
           this.cx.fillStyle = grd;
@@ -165,5 +174,4 @@ export class TetrisService {
       })
     });
   }
-
 }

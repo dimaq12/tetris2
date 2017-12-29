@@ -1,5 +1,6 @@
-<!-- <game></game> -->
+
 <alert></alert>
-<div  class="main" [@routerTransition]="bindingVar">
+<div class="main" [@routerTransition]="animation">
+    <particles [params]="myParams" [style]="myStyle" [width]="width" [height]="height"></particles>
     <router-outlet></router-outlet>
 </div>

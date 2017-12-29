@@ -3,12 +3,18 @@
     padding: 10px;
     left: 0;
     top: 0;
-    height: 200px;
-    width: 100px;
-    background: rgba(0, 0, 0, 0.24);
+    height: 300px;
+    width: 136px;
+    background: rgba(243, 243, 243, 0.24);
 }
 .activity div{
     border: 1px solid rgb(199, 199, 199);
     text-align: center;
     color: rgb(206, 206, 206);
+}
+.start button{
+    width: 100%;
+}
+.start:after{
+    content: "\00A9"
 }

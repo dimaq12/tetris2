@@ -14,26 +14,30 @@ import * as GameActions from '../state/actions';
 
 
 export class GameInfoComponent implements OnInit {
-  public foo: string;
   public level: Observable<any>;
   public score: Observable<any>;
-  public buttonText: string;
+  public startText: string;
+  public newText: string;
   pause: boolean;
   constructor(private store: Store<any>) {
-    this.buttonText = 'Start Game'
+    this.startText = 'Start Game';
+    this.newText = 'Start Game';
   }
 
   public pauseGame() {
     if (!this.pause) {
-      this.buttonText = 'Start Game'
+      this.startText = 'Start Game'
       this.store.dispatch(new GameActions.PauseGame({ pause: true }));
       return;
     }
     if (this.pause) {
-      this.buttonText = 'Pause Game'
+      this.startText = 'Pause Game'
       this.store.dispatch(new GameActions.RestoreGame({ pause: false }));
     }
   }
+  // public newGame(){
+  //   this.store.dispatch(new GameActions.NewGame({ pause: true, level: 1, score: 0 }));
+  // }
   ngOnInit() {
     this.store.select((state => state))
       .subscribe((data) => {
@@ -44,5 +48,3 @@ export class GameInfoComponent implements OnInit {
     this.store.dispatch(new GameActions.StartGame({ started: true }));
   }
 }
-
-
